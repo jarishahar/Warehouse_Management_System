@@ -24,7 +24,7 @@ public class AdminController {
 	
 	
 	
-	@PostMapping("/admins")
+	@PostMapping("/register")
 	public ResponseEntity<ResponseStructure<AdminResponse>>saveSuperAdmin(@RequestBody @Valid AdminRequest adminRequest){
 		return adminService.saveSuperAdmin(adminRequest);
 		
