@@ -29,6 +29,11 @@ public class AdminController {
 		return adminService.saveSuperAdmin(adminRequest);
 		
 	}
+	@PostMapping("/admins")
+	public ResponseEntity<ResponseStructure<AdminResponse>>saveAdmin(@RequestBody AdminRequest adminRequest){
+		return adminService.saveAdmin(adminRequest);
+		
+	}
 	
 	
 

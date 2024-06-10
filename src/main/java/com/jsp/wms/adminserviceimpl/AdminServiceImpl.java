@@ -41,5 +41,11 @@ public class AdminServiceImpl implements AdminService {
 						.setMessage("SuperAdmin Created")
 						.setData(adminMapper.mapToAdminResponse(admin)));
 	}
+
+	@Override
+	public ResponseEntity<ResponseStructure<AdminResponse>> saveAdmin(AdminRequest adminRequest) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
 
