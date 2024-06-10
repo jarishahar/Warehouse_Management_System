@@ -20,4 +20,5 @@ public class WareHouseEntity {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int warehouseId;
 	private String warehousename;
+	private Admin admin;
 }

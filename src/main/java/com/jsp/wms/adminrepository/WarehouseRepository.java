@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.jsp.wms.entity.WareHouseEntity;
 
-public interface WarehouseResository extends JpaRepository<WareHouseEntity, Integer> {
+public interface WarehouseRepository extends JpaRepository<WareHouseEntity, Integer> {
 
 }
