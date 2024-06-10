@@ -51,23 +51,23 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public ResponseEntity<ResponseStructure<AdminResponse>> saveAdmin(AdminRequest adminRequest,int warehouseId ) {
-	Optional<WareHouseEntity>optional = warehouseRepository.findById(warehouseId);
-	if(optional.isPresent()) {
-		Admin admin = adminMapper.mapToAdmin(adminRequest , new Admin());
-		admin.setAdminType(AdminType.ADMIN);
+		 return warehouseRepository.findById(warehouseId).map(warehouse -> {
+			 Admin admin = adminMapper.mapToAdmin(adminRequest, new Admin());
+			 admin.setAdminType(AdminType.ADMIN);
+			 admin= adminRepository.save(admin);
+	
+			warehouse.setAdmin(admin);
+			warehouseRepository.save(warehouse);
+			 return  ResponseEntity.status(HttpStatus.CREATED)
+						.body(new ResponseStructure<AdminResponse>()
+								.setStatus(HttpStatus.CREATED.value())
+								.setMessage("Admin Created")
+								.setData(adminMapper.mapToAdminResponse(admin)));
+		}).orElseThrow(()-> 
+		new WarehouseNotFoundByIdException("Warehouse with the given id is not present"));
+			
+			
 		
-		admin= adminRepository.save(admin);
-		WareHouseEntity wareHouseEntity =optional.get();
-		wareHouseEntity.setAdmin(admin);
-		warehouseRepository.save(wareHouseEntity);
-		return ResponseEntity.status(HttpStatus.CREATED)
-				.body(new ResponseStructure<AdminResponse>()
-						.setStatus(HttpStatus.CREATED.value())
-						.setMessage("SuperAdmin Created")
-						.setData(adminMapper.mapToAdminResponse(admin)));
-	}
-	else 
-		throw new WarehouseNotFoundByIdException("warehouse not found");
 }
 }
 
