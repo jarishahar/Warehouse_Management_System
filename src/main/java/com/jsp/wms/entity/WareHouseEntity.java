@@ -10,6 +10,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -17,10 +18,10 @@ import lombok.Setter;
 @Builder
 @Entity
 public class WareHouseEntity {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int warehouseId;
-	private String warehousename;
+	private String warehouseName;
 	@OneToOne
 	private Admin admin;
 }

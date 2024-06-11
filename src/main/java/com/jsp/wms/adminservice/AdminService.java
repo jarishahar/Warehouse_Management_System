@@ -1,6 +1,9 @@
 package com.jsp.wms.adminservice;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.jsp.wms.Utility.ResponseStructure;
 import com.jsp.wms.requestdto.AdminRequest;
@@ -15,6 +18,13 @@ public interface AdminService {
 	ResponseEntity<ResponseStructure<AdminResponse>> saveAdmin(@RequestBody AdminRequest adminRequest ,int warehouseId);
 
 	ResponseEntity<ResponseStructure<AdminResponse>> updateAdmin(@RequestBody AdminRequest adminRequest);
+
+	ResponseEntity<ResponseStructure<AdminResponse>> updateAdminBySuperAdmin(@RequestBody AdminRequest adminRequest,
+			int adminId);
+
+	ResponseEntity<ResponseStructure<AdminResponse>> findAdmin(@PathVariable int adminId);
+
+	ResponseEntity<ResponseStructure<List<AdminResponse>>> findAllAdmins();
 
 	
 
