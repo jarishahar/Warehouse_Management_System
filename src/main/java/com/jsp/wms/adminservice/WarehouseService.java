@@ -8,6 +8,8 @@ import com.jsp.wms.responsedto.WarehouseResponse;
 
 public interface WarehouseService {
 
-	//String saveWareHouse(WarehouseRequest warehouseRequest);
+	ResponseEntity<ResponseStructure<WarehouseResponse>> createWarehouse(WarehouseRequest warehouseRequest);
+
+	
 
 }

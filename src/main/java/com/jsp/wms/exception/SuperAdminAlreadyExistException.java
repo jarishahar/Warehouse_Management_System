@@ -8,7 +8,7 @@ public class SuperAdminAlreadyExistException extends RuntimeException {
 	}
 	@Override
 	public String getMessage() {
-		return message;
+		return this.getMessage();
 	}
 
 }
