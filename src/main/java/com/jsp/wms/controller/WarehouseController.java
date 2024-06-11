@@ -3,7 +3,11 @@ package com.jsp.wms.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,7 +16,7 @@ import com.jsp.wms.adminservice.WarehouseService;
 import com.jsp.wms.requestdto.WarehouseRequest;
 import com.jsp.wms.responsedto.WarehouseResponse;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
 
 
 @RestController
@@ -28,4 +32,16 @@ public class WarehouseController {
 		return warehouseService.createWarehouse(warehouseRequest);
 
 	}
+	@PutMapping("/warehouses/{warehouseId}")
+	public ResponseEntity<ResponseStructure<WarehouseResponse>>updateWarehouse(@RequestBody WarehouseRequest warehouseRequest,
+			@PathVariable int warehouseId ){
+		return warehouseService.updateWarehouse(warehouseRequest,warehouseId);
+	}
+	
+	@GetMapping("/warehouses/{warehouseId}")
+	public ResponseEntity<ResponseStructure<WarehouseResponse>>findWarehouse(
+			@PathVariable int warehouseId ){
+		return warehouseService.findWarehouse(warehouseId);
+	}
+	
 }

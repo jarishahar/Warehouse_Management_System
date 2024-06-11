@@ -1,10 +1,9 @@
 package com.jsp.wms.exception;
 
-public class WarehouseNotFoundByIdException extends RuntimeException {
+public class AdminNotFoundByIdException extends RuntimeException {
 	private String message;
 
-	public WarehouseNotFoundByIdException(String message) {
-		super();
+	public AdminNotFoundByIdException(String message) {
 		this.message = message;
 	}
 
