@@ -25,7 +25,7 @@ private WarehouseRepository warehouseRepository;
 	public ResponseEntity<ResponseStructure<WarehouseResponse>> createWarehouse(WarehouseRequest warehouseRequest) {
 		
 		WareHouseEntity wareHouseEntity = warehouseMapper.mapToWareHouseEntity(warehouseRequest, new WareHouseEntity());
-		warehouseRepository.save(wareHouseEntity);
+	 WareHouseEntity houseEntity=  warehouseRepository.save(wareHouseEntity);
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(new ResponseStructure<WarehouseResponse>()
 						.setStatus(HttpStatus.CREATED.value())

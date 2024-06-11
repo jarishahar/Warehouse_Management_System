@@ -7,6 +7,8 @@ package com.jsp.wms.adminserviceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.jsp.wms.Utility.ResponseStructure;
@@ -15,6 +17,7 @@ import com.jsp.wms.adminrepository.WarehouseRepository;
 import com.jsp.wms.adminservice.AdminService;
 import com.jsp.wms.entity.Admin;
 import com.jsp.wms.enums.AdminType;
+import com.jsp.wms.exception.AdminNotFoundByEmailException;
 import com.jsp.wms.exception.SuperAdminAlreadyExistException;
 import com.jsp.wms.exception.WarehouseNotFoundByIdException;
 import com.jsp.wms.mapper.AdminMapper;
@@ -67,6 +70,25 @@ public class AdminServiceImpl implements AdminService {
 			
 		
 }
+
+	@Override
+	public ResponseEntity<ResponseStructure<AdminResponse>> updateAdmin(AdminRequest adminRequest) {
+		String email =SecurityContextHolder.getContext().getAuthentication().getName();
+		return adminRepository.findByEmail(email).map(exadmin -> {
+			Admin admin = adminMapper.mapToAdmin(adminRequest , exadmin);
+			
+		 adminRepository.save(exadmin);
+			return  ResponseEntity.status(HttpStatus.OK)
+					.body(new ResponseStructure<AdminResponse>()
+							.setStatus(HttpStatus.OK.value())
+							.setMessage("Admin Updated")
+							.setData(adminMapper.mapToAdminResponse(admin)));
+		}).orElseThrow(()-> new AdminNotFoundByEmailException("Admin not Found"));
+		
+		
+	}
+
+	
 }
 
 	
