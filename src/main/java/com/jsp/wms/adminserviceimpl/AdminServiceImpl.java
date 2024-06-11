@@ -3,7 +3,6 @@ package com.jsp.wms.adminserviceimpl;
 
 
 
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +14,6 @@ import com.jsp.wms.adminrepository.AdminRepository;
 import com.jsp.wms.adminrepository.WarehouseRepository;
 import com.jsp.wms.adminservice.AdminService;
 import com.jsp.wms.entity.Admin;
-import com.jsp.wms.entity.WareHouseEntity;
 import com.jsp.wms.enums.AdminType;
 import com.jsp.wms.exception.SuperAdminAlreadyExistException;
 import com.jsp.wms.exception.WarehouseNotFoundByIdException;

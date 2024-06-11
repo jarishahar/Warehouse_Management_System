@@ -16,13 +16,13 @@ public class UserDetailImpl implements UserDetails{
 	private Admin admin;
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		admin.getAdminType().getPrivileges()
+		return admin.getAdminType().getPrivileges()
 		.stream()
-		.map(priviliges ->
-		new SimpleGrantedAuthority(priviliges.name())
+		.map(privileges ->
+		new SimpleGrantedAuthority(privileges.name())
 		).toList();
 		
-		return null;
+		
 	}
 
 	@Override
