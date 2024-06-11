@@ -17,7 +17,7 @@ public class WarehouseMapper {
 		return wareHouseEntity;
 		
 	}
-
+//to provide response to the client
 	public WarehouseResponse mapToWarehouseResponse(WareHouseEntity wareHouseEntity) {
 		return WarehouseResponse.builder()
 				.warehouseId(wareHouseEntity.getWarehouseId())
