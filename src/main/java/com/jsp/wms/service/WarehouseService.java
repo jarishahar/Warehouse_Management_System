@@ -1,4 +1,4 @@
-package com.jsp.wms.adminservice;
+package com.jsp.wms.service;
 
 import org.springframework.http.ResponseEntity;
 

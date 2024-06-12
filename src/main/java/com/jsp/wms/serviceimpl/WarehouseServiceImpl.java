@@ -1,4 +1,4 @@
-package com.jsp.wms.adminserviceimpl;
+package com.jsp.wms.serviceimpl;
 
 
 
@@ -8,13 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.jsp.wms.Utility.ResponseStructure;
-import com.jsp.wms.adminrepository.WarehouseRepository;
-import com.jsp.wms.adminservice.WarehouseService;
-import com.jsp.wms.entity.WareHouseEntity;
+import com.jsp.wms.entity.WareHouse;
 import com.jsp.wms.exception.WarehouseNotFoundByIdException;
 import com.jsp.wms.mapper.WarehouseMapper;
+import com.jsp.wms.repository.WarehouseRepository;
 import com.jsp.wms.requestdto.WarehouseRequest;
 import com.jsp.wms.responsedto.WarehouseResponse;
+import com.jsp.wms.service.WarehouseService;
 @Service
 public class WarehouseServiceImpl implements WarehouseService{
 	@Autowired
@@ -25,13 +25,13 @@ public class WarehouseServiceImpl implements WarehouseService{
 	@Override
 
 	public ResponseEntity<ResponseStructure<WarehouseResponse>>createWarehouse(WarehouseRequest warehouseRequest) {
-		WareHouseEntity wareHouseEntity = warehouseMapper.mapToWareHouseEntity(warehouseRequest, new WareHouseEntity());
-		warehouseRepository.save(wareHouseEntity);
+		WareHouse wareHouse = warehouseMapper.mapToWareHouseEntity(warehouseRequest, new WareHouse());
+		warehouseRepository.save(wareHouse);
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(new ResponseStructure<WarehouseResponse>()
 						.setStatus(HttpStatus.CREATED.value())
 						.setMessage("Warehouse Created")
-						.setData(warehouseMapper.mapToWarehouseResponse(wareHouseEntity)));
+						.setData(warehouseMapper.mapToWarehouseResponse(wareHouse)));
 	}
 
 
@@ -39,8 +39,8 @@ public class WarehouseServiceImpl implements WarehouseService{
 	public ResponseEntity<ResponseStructure<WarehouseResponse>>updateWarehouse(WarehouseRequest warehouseRequest,
 			int warehouseId) {
 		return warehouseRepository.findById(warehouseId).map(exwarehouse ->{
-			WareHouseEntity updateHouseEntity = warehouseMapper.mapToWareHouseEntity(warehouseRequest, exwarehouse);
-			WareHouseEntity updatehouseEntity = warehouseRepository.save(updateHouseEntity);
+			WareHouse updateHouseEntity = warehouseMapper.mapToWareHouseEntity(warehouseRequest, exwarehouse);
+			WareHouse updatehouseEntity = warehouseRepository.save(updateHouseEntity);
 			return  ResponseEntity.status(HttpStatus.OK)
 					.body(new ResponseStructure<WarehouseResponse>()
 							.setStatus(HttpStatus.OK.value())

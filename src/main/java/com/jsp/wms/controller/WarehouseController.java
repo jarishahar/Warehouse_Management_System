@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jsp.wms.Utility.ResponseStructure;
-import com.jsp.wms.adminservice.WarehouseService;
 import com.jsp.wms.requestdto.WarehouseRequest;
 import com.jsp.wms.responsedto.WarehouseResponse;
+import com.jsp.wms.service.WarehouseService;
 
 
 
@@ -43,5 +43,7 @@ public class WarehouseController {
 			@PathVariable int warehouseId ){
 		return warehouseService.findWarehouse(warehouseId);
 	}
+	
+	
 	
 }

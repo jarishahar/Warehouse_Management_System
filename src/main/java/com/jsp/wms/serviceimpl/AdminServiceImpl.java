@@ -1,4 +1,4 @@
-package com.jsp.wms.adminserviceimpl;
+package com.jsp.wms.serviceimpl;
 
 
 
@@ -7,14 +7,10 @@ package com.jsp.wms.adminserviceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import com.jsp.wms.Utility.ResponseStructure;
-import com.jsp.wms.adminrepository.AdminRepository;
-import com.jsp.wms.adminrepository.WarehouseRepository;
-import com.jsp.wms.adminservice.AdminService;
 import com.jsp.wms.entity.Admin;
 import com.jsp.wms.enums.AdminType;
 import com.jsp.wms.exception.AdminNotFoundByEmailException;
@@ -22,10 +18,12 @@ import com.jsp.wms.exception.AdminNotFoundByIdException;
 import com.jsp.wms.exception.SuperAdminAlreadyExistException;
 import com.jsp.wms.exception.WarehouseNotFoundByIdException;
 import com.jsp.wms.mapper.AdminMapper;
+import com.jsp.wms.repository.AdminRepository;
+import com.jsp.wms.repository.WarehouseRepository;
 import com.jsp.wms.requestdto.AdminRequest;
 import com.jsp.wms.responsedto.AdminResponse;
+import com.jsp.wms.service.AdminService;
 
-import jakarta.validation.Valid;
 
 
 @Service
@@ -119,9 +117,9 @@ public class AdminServiceImpl implements AdminService {
 		}
 
 	@Override
-	public ResponseEntity<ResponseStructure<List<AdminResponse>>> findAllAdmins() {
+	public ResponseEntity<ResponseStructure<List<AdminResponse>>> findAllByAdminType() {
 		
-			List<AdminResponse> adminsList = adminRepository.findAll().stream().map(admin -> 
+			List<AdminResponse> adminsList = adminRepository.findAllByAdminType(AdminType.ADMIN).stream().map(admin -> 
 				adminMapper.mapToAdminResponse(admin)).toList();
 			
 			return ResponseEntity.status(HttpStatus.FOUND)

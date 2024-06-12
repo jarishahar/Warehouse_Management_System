@@ -1,4 +1,4 @@
-package com.jsp.wms.adminservice;
+package com.jsp.wms.service;
 
 import java.util.List;
 
@@ -24,7 +24,8 @@ public interface AdminService {
 
 	ResponseEntity<ResponseStructure<AdminResponse>> findAdmin(@PathVariable int adminId);
 
-	ResponseEntity<ResponseStructure<List<AdminResponse>>> findAllAdmins();
+	ResponseEntity<ResponseStructure<List<AdminResponse>>> findAllByAdminType();
+
 
 	
 

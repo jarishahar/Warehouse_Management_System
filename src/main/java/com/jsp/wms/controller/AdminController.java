@@ -15,10 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.jsp.wms.Utility.ResponseStructure;
-import com.jsp.wms.adminservice.AdminService;
 import com.jsp.wms.requestdto.AdminRequest;
 import com.jsp.wms.responsedto.AdminResponse;
-
+import com.jsp.wms.service.AdminService;
 
 import jakarta.validation.Valid;
 
@@ -60,10 +59,10 @@ public class AdminController {
 	}
 	
 	@GetMapping("/admins")
-	public ResponseEntity<ResponseStructure<List<AdminResponse>>>findAllAdmins(){
-		return adminService.findAllAdmins();
+	public ResponseEntity<ResponseStructure<List<AdminResponse>>>findAllByAdminType(){
+		return adminService.findAllByAdminType();
 	} 
-	
+
 	
 	
 	
