@@ -1,6 +1,5 @@
 package com.jsp.wms.responsedto;
 
-import com.jsp.wms.enums.AdminType;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

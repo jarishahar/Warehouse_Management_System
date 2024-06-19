@@ -25,18 +25,18 @@ public class AddressController {
 	@Autowired
 	private AddressService addressService;
 	@PreAuthorize("hasAuthority('CREATE_ADMIN')")
-	@PostMapping("/warehouses/{warehouseId}/address")
+	@PostMapping("/warehouses/{warehouseId}/addresses")
 public ResponseEntity<ResponseStructure<AddressResponse>>saveAddress(@RequestBody AddressRequest addressRequest,@PathVariable int warehouseId){
 	return addressService.saveAddress(addressRequest,warehouseId);
 }
 	
-	
-	@PutMapping("/address/{addressId}")
+	@PreAuthorize("hasAuthority('CREATE_ADMIN')")
+	@PutMapping("/addresses/{addressId}")
 	public ResponseEntity<ResponseStructure<AddressResponse>>updateAddressById(@RequestBody @Valid AddressRequest addressRequest ,@PathVariable int addressId){
 		return addressService.updateAddress(addressRequest,addressId);
 	}
-	
-	@GetMapping("/address/{addressId}")
+	@PreAuthorize("hasAuthority('READ')")
+	@GetMapping("/addresses/{addressId}")
 	public ResponseEntity<ResponseStructure<AddressResponse>>findAddressById(@PathVariable int addressId){
 		return addressService.findAddressById(addressId);
 	}

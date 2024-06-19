@@ -41,7 +41,7 @@ public class AdminController {
 		return adminService.saveAdmin(adminRequest, warehouseId);
 		
 	}
-	
+	@PreAuthorize("hasAuthority('UPDATE_ADMIN')")
 	@PutMapping("/admins")
 	public ResponseEntity<ResponseStructure<AdminResponse>>updateAdmin(@RequestBody @Valid AdminRequest adminRequest){
 		return adminService.updateAdmin(adminRequest);
@@ -53,11 +53,12 @@ public class AdminController {
 			@PathVariable int adminId){
 		return adminService.updateAdminBySuperAdmin(adminRequest,adminId);
 	}
+	@PreAuthorize("hasAuthority('READ')")
 	@GetMapping("/admins/{adminId}")
 	public ResponseEntity<ResponseStructure<AdminResponse>>findAdmin(@PathVariable int adminId){
 		return adminService.findAdmin(adminId);
 	}
-	
+	@PreAuthorize("hasAuthority('READ')")
 	@GetMapping("/admins")
 	public ResponseEntity<ResponseStructure<List<AdminResponse>>>findAllByAdminType(){
 		return adminService.findAllByAdminType();

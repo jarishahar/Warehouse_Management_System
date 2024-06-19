@@ -32,12 +32,13 @@ public class WarehouseController {
 		return warehouseService.createWarehouse(warehouseRequest);
 
 	}
+	@PreAuthorize("hasAuthority('UPDATE_WAREHOUSE')")
 	@PutMapping("/warehouses/{warehouseId}")
 	public ResponseEntity<ResponseStructure<WarehouseResponse>>updateWarehouse(@RequestBody WarehouseRequest warehouseRequest,
 			@PathVariable int warehouseId ){
 		return warehouseService.updateWarehouse(warehouseRequest,warehouseId);
 	}
-	
+	@PreAuthorize("hasAuthority('READ')")
 	@GetMapping("/warehouses/{warehouseId}")
 	public ResponseEntity<ResponseStructure<WarehouseResponse>>findWarehouse(
 			@PathVariable int warehouseId ){
