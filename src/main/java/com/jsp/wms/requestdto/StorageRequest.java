@@ -1,5 +1,7 @@
 package com.jsp.wms.requestdto;
 
+import java.util.List;
+
 import com.jsp.wms.enums.MaterialTypes;
 
 import jakarta.validation.constraints.NotBlank;
@@ -31,5 +33,5 @@ public class StorageRequest {
 	
 	@NotNull(message = "Blockname cannot be null")
 	
-	private MaterialTypes materialTypes;
+	List<MaterialTypes> materialTypes;
 }
