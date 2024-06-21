@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.jsp.wms.Utility.ResponseStructure;
-import com.jsp.wms.entity.Storage;
 import com.jsp.wms.entity.StorageType;
 import com.jsp.wms.exception.StorageTypeNotFoundByIdException;
 import com.jsp.wms.mapper.StorageTypeMapper;

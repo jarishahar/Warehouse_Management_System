@@ -125,7 +125,7 @@ public class AdminServiceImpl implements AdminService {
 			return ResponseEntity.status(HttpStatus.FOUND)
 					.body(new ResponseStructure<List<AdminResponse>>()
 							.setStatus(HttpStatus.FOUND.value())
-							.setMessage("Admins Found")
+							.setMessage("inventory Found")
 							.setData(adminsList));
 			
 		

@@ -1,5 +1,7 @@
 package com.jsp.wms.responsedto;
 
+import java.util.List;
+
 import com.jsp.wms.enums.MaterialTypes;
 
 import lombok.AllArgsConstructor;
@@ -16,11 +18,7 @@ public class StorageResponse {
 	private int storageId;
 	private String blockName;
 	private String section;
-	private double lengthInMeter;
-	private double heightInMeter;
-	private double breathInmeter;
-	private double capacityInWeigth;
+	List<MaterialTypes> materialTypes;
 	private double maxAdditionalWeight;
-	private double availableAreaInMeter;
-	private MaterialTypes materialTypes;
+	private double availableArea;
 }
